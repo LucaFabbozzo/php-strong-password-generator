@@ -22,24 +22,31 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
 
   // $random = array_rand($unione);
 
-  foreach ($unione as $key => $value) {
-     echo $value;
-  }
+  // var_dump($random);
 
-  $random = $value.rand();
+  // for ($i=0; $i < count($unione); $i++) { 
+  //      echo $unione[$i];
+  //      echo(rand(0, count($unione)));
+  // }
 
-  echo $random;
+  // rand(min,max)
 
-  // var_dump($unione);
+  
+
+ function passwordGenerate($len) {
+    for ($i=0; $i < count($unione); $i++) { 
+    echo $unione[$i];
+    echo(rand(0, count($unione)));
+      }
+     }
 
 
-  $data = $_GET["data"];
+  $len = $_GET["lpass"];
 
-  var_dump($data);
-
-  function passwordGenerate($data) {
-
-  } 
+  /**
+   * $len = $_GET['lpass'];
+   * passwordGenerate($len)
+   */
 
 ?>
 
@@ -56,7 +63,7 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
 <body>
   
   <form method="GET">
-    <input type="text" name="data">
+    <input type="text" name="lpass">
     <button type="submit">Invia</button>
   </form>
 
