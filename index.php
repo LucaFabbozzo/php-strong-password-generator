@@ -14,39 +14,28 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
 
 <?php
 
-  $numeri = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  $lettere = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l','m', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z'];
-  $simboli = ['!', '?', '&', '%', '$', '<', '>', '^', '+', '-', '*', '/', '()', '[]', '{}', '@', '#', '_', '=' ];
-
-  $unione = array_merge($numeri, $lettere, $simboli);
-
-  // $random = array_rand($unione);
-
-  // var_dump($random);
-
-  // for ($i=0; $i < count($unione); $i++) { 
-  //      echo $unione[$i];
-  //      echo(rand(0, count($unione)));
-  // }
-
-  // rand(min,max)
-
-  
-
- function passwordGenerate($len) {
-    for ($i=0; $i < count($unione); $i++) { 
-    echo $unione[$i];
-    echo(rand(0, count($unione)));
-      }
-     }
+var_dump($_GET);
 
 
-  $len = $_GET["lpass"];
+$listChars = 'abcdefghilmnopqrstuvzABCDEFGHILMNOPQRSTUVZ12345678910!?&%$<>^+-*/()[]{}@#_=';
 
-  /**
-   * $len = $_GET['lpass'];
-   * passwordGenerate($len)
-   */
+require_once 'functions.php';
+
+
+//se invio la lunghezza della password
+if (!empty($_GET['lpass'])) {
+  //controllo la lunghezza
+  if($_GET['lpass'] < 8 || $_GET['lpass'] > 32) {
+    $output = "Errore! la lunghezza deve essere compresa fra 8 e 32";
+  } else {
+    //genero la psw
+    echo "OK";
+    $output = '... pas generata ...';
+  }
+} else  {
+  // se non invio la lunghezza della psw
+  $output = "Generare una password di lughezza compresa fra 8 e 32";
+}
 
 ?>
 
@@ -66,6 +55,10 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
     <input type="text" name="lpass">
     <button type="submit">Invia</button>
   </form>
+
+  <div>
+    <p><?php echo $output; ?></p>
+  </div>
 
 </body>
 </html>
