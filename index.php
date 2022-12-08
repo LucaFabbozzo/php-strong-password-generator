@@ -14,8 +14,7 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
 
 <?php
 
-var_dump($_GET);
-
+// var_dump($_GET);
 
 $listChars = 'abcdefghilmnopqrstuvzABCDEFGHILMNOPQRSTUVZ12345678910!?&%$<>^+-*/()[]{}@#_=';
 
@@ -23,16 +22,20 @@ require_once 'functions.php';
 
 
 //se invio la lunghezza della password
-if (!empty($_GET['lpass'])) {
+if (!empty($_GET['lenght'])) {
   //controllo la lunghezza
-  if($_GET['lpass'] < 8 || $_GET['lpass'] > 32) {
+  if ($_GET['lenght'] < 8 || $_GET['lenght'] > 32) {
     $output = "Errore! la lunghezza deve essere compresa fra 8 e 32";
   } else {
     //genero la psw
     echo "OK";
-    $output = '... pas generata ...';
+    //adra in sessione...
+    $password = generatePassword($_GET['lenght'], $listChars);
+    session_start();
+    $_SESSION['password'] = $password;
+    header('Location: ./success.php');
   }
-} else  {
+} else {
   // se non invio la lunghezza della psw
   $output = "Generare una password di lughezza compresa fra 8 e 32";
 }
@@ -43,22 +46,28 @@ if (!empty($_GET['lpass'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <title>PHP Strong Password Generator</title>
 </head>
-<body>
-  
-  <form method="GET">
-    <input type="text" name="lpass">
-    <button type="submit">Invia</button>
-  </form>
 
-  <div>
-    <p><?php echo $output; ?></p>
+<body>
+  <div class="container py-4 w-50 m-auto text-center">
+    <h1 class="pb-4">PHP Strong Password Generator</h1>
+    <form  method="GET">
+      <input class="mb-4" type="text" name="lenght">
+      <button type="submit">Invia</button>
+    </form>
+
+    <div>
+      <p><?php echo $output; ?></p>
+    </div>
   </div>
 
 </body>
+
 </html>
