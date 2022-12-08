@@ -20,7 +20,7 @@ session_start()
 <body>
 
   <div class="container w-50 py-5 m-auto text-center">
-    <h2>La password generata è:</h2>
+    <h2 class="pb-4 text-uppercase fs-5">La password generata è:</h2>
     <div>
       <?php echo $_SESSION['password'] ?>
     </div>

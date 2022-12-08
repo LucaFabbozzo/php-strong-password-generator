@@ -1,4 +1,4 @@
-<!-- Descrizione
+<!-- 
 Dobbiamo creare una pagina che permetta ai nostri utenti di utilizzare il nostro generatore di password (abbastanza) sicure.
 L’esercizio è suddiviso in varie milestone ed è molto importante svilupparle in modo ordinato.
 Milestone 1
@@ -7,10 +7,8 @@ Scriviamo tutto (logica e layout) in un unico file index.php
 Milestone 2
 Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale
 Milestone 3
-Invece di visualizzare la password nella index, effettuare un redirect ad una pagina dedicata che tramite $_SESSION recupererà la password da mostrare all’utente.
-Milestone 4 (BONUS)
-Gestire ulteriori parametri per la password: quali caratteri usare fra numeri, lettere e simboli. Possono essere scelti singolarmente (es. solo numeri) oppure possono essere combinati fra loro (es. numeri e simboli, oppure tutti e tre insieme).
-Dare all’utente anche la possibilità di permettere o meno la ripetizione di caratteri uguali. -->
+Invece di visualizzare la password nella index, effettuare un redirect ad una pagina dedicata che tramite $_SESSION recupererà la password da mostrare all’utente. -->
+
 
 <?php
 
@@ -37,7 +35,7 @@ if (!empty($_GET['lenght'])) {
   }
 } else {
   // se non invio la lunghezza della psw
-  $output = "Generare una password di lughezza compresa fra 8 e 32";
+  $output = "Inserisci un numero compreso tra 8 e 32";
 }
 
 ?>
@@ -52,20 +50,23 @@ if (!empty($_GET['lenght'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
   <title>PHP Strong Password Generator</title>
 </head>
 
 <body>
   <div class="container py-4 w-50 m-auto text-center">
-    <h1 class="pb-4">PHP Strong Password Generator</h1>
-    <form  method="GET">
-      <input class="mb-4" type="text" name="lenght">
-      <button type="submit">Invia</button>
-    </form>
+    <h1 class="pb-4 text-uppercase fs-5">PHP Strong Password Generator</h1>
 
-    <div>
-      <p><?php echo $output; ?></p>
-    </div>
+    <form method="GET">
+      <div class="py-2">
+        <p><?php echo $output; ?></p>
+      </div>
+      <div class="psw-input">
+        <input name="lenght" type="number" class="w-25 m-auto" id="exampleInputPassword1">
+        <button type="submit">Invia</button>
+      </div>
+    </form>
   </div>
 
 </body>
