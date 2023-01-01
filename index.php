@@ -26,7 +26,6 @@ if (!empty($_GET['lenght'])) {
     $output = "Errore! la lunghezza deve essere compresa fra 8 e 32";
   } else {
     //genero la psw
-    echo "OK";
     //adra in sessione...
     $password = generatePassword($_GET['lenght'], $listChars);
     session_start();
